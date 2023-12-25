@@ -35,6 +35,9 @@ public class GamePanel extends JPanel implements Runnable {
   public void run() {
     while(gameThread != null) {
       System.out.println("The game loop is running!");
+
+      // UPDATE: Character information and position
+      // DRAW: Character on screen based on Character position
     }
   }
 }
