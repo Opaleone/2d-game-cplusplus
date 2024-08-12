@@ -1,9 +1,11 @@
+package src.main;
 import javax.swing.JFrame;
-
-import src.*;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 
 public class Main {
   public static void main(String[] args) {
+    GraphicsDevice myDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
     JFrame window = new JFrame();
     // Allows us to close
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -18,6 +20,7 @@ public class Main {
 
     window.setLocationRelativeTo(null);
     window.setVisible(true);
+    myDevice.setFullScreenWindow(window);
 
     gamePanel.startGameThread();
   }
