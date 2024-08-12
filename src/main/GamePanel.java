@@ -3,6 +3,7 @@ package src.main;
 import javax.swing.JPanel;
 
 import src.entity.Player;
+import src.tile.TileManager;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,13 +26,10 @@ public class GamePanel extends JPanel implements Runnable {
   // FPS
   int FPS = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0].getDisplayMode().getRefreshRate();
 
+  TileManager floor = new TileManager(this);
   KeyHandler keyH = new KeyHandler();
   Thread gameThread;
   Player player = new Player(this, keyH);
-
-  int playerX = 100;
-  int playerY = 100;
-  int playerSpeed = 15;
 
   // Creating game panel
   public GamePanel() {
@@ -84,6 +82,7 @@ public class GamePanel extends JPanel implements Runnable {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     Graphics2D g2 = (Graphics2D)g;
+    floor.draw(g2);
     player.draw(g2);
     g2.dispose();
   }
