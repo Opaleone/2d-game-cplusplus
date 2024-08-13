@@ -32,6 +32,7 @@ public class TileManager {
     int x = 0;
     int y = gp.screenHeight - 42;
     
+    // timesRun = 159
     for (int i = 0; i < (gp.screenWidth / gp.tileSize + 1); i++) {
       if (i == 10 || i == 11 || i == 12 || i == 13) {
         x += gp.tileSize;
@@ -40,8 +41,6 @@ public class TileManager {
 
       g2.drawImage(tile[0].image, x, y, gp.tileSize, gp.tileSize, null);
       x += gp.tileSize;
-
-      System.out.println(i);
     }
   }
 }
