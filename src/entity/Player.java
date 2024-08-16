@@ -25,11 +25,11 @@ public class Player extends Entity {
     y = 100;
     width = gp.tileSize;
     height = gp.tileSize;
-    speed = 15;
+    speed = 4;
   }
 
   public Rectangle getBounds() {
-    return new Rectangle(x, y, width, height);
+    return new Rectangle(x, y, width, height - 4);
 }
 
   public void move(ArrayList<Rectangle> tiles) {
@@ -40,14 +40,16 @@ public class Player extends Entity {
 
     if (keyH.leftPressed) x -= speed;
     if (keyH.rightPressed) x += speed;
+    
+    y += speed;
 
-    // start of collision checker feature
-    y -= speed; //falling
-    for(Rectangle t : tiles) { // for all of the Tiles in tiles, do the following
+    // start of collision checker feature //falling
+    for(Rectangle t : tiles) {
         Rectangle next = t;
         if(CollisionChecker.isColliding(this, next)) {
-            y += 0; //stop falling
-        }
+          System.out.println("ping");
+          y -= speed; //stop falling
+        } 
     }
   }
   public void draw(Graphics2D g2) {

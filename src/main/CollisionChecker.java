@@ -13,10 +13,13 @@ public class CollisionChecker {
   public static boolean isColliding(Player player, Rectangle tile) {
     Rectangle pRect = player.getBounds();
     Rectangle tRect = tile.getBounds();
+    // System.out.println("Player: " + pRect);
+    // System.out.println("Tile: " + tRect);
 
     if (pRect.intersects(tRect)) {
       return true;
-    } 
-    return false;
+    } else {
+      return false;
+    }
   }
 }

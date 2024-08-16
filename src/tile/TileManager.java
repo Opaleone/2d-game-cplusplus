@@ -1,17 +1,18 @@
 package src.tile;
 
+import java.awt.Color;
 // import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.io.IOException;
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 import src.main.GamePanel;
 
 public class TileManager {
-  ArrayList<Rectangle> tileLocations = new ArrayList<Rectangle>();
+  // ArrayList<Rectangle> tileLocations = new ArrayList<Rectangle>();
   GamePanel gp;
   Tile[] tile;
 
@@ -27,6 +28,28 @@ public class TileManager {
       tile[0].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/Floor1.png"));
     } catch(IOException e) {
       e.printStackTrace();
+    }
+  }
+
+  public void setTileRectangles() {
+    int x = 0;
+    int y = gp.screenHeight - 42;
+    int tileRemoval[] = {10, 11, 12, 13};
+
+    for (int i = 0; i < (gp.screenWidth / gp.tileSize + 1); i++) {
+      boolean found = false;
+      for (int value : tileRemoval) {
+        if (value == i) {
+          found = true;
+        }
+      }
+
+      if (found) {
+        x += gp.tileSize;
+        continue;
+      }
+      gp.tiles.add(new Rectangle(x, y, gp.tileSize, gp.tileSize));
+      x += gp.tileSize;
     }
   }
 
@@ -51,12 +74,11 @@ public class TileManager {
         continue;
       }
 
-      // TODO: Need to find a way to add this to gp.tiles outside of thread for loop;
-      // tileLocations.add(new Rectangle(x, y, gp.tileSize, gp.tileSize));
       g2.drawImage(tile[0].image, x, y, gp.tileSize, gp.tileSize, null);
+      g2.setColor(Color.red);
+      g2.fillRect(x, y, 3, 3);
       
       x += gp.tileSize;
     }
-    // gp.tiles.addAll(tileLocations);
   }
 }

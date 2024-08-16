@@ -45,6 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
   }
 
   public void startGameThread() {
+    floor.setTileRectangles();
     gameThread = new Thread(this);
     gameThread.start();
   }
@@ -56,6 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
     double nextDrawTime = System.nanoTime() + drawInterval;
 
     while(gameThread != null) {
+      // System.out.println(tiles);
       update();
       repaint();
 
