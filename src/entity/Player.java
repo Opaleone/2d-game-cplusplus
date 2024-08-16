@@ -31,16 +31,13 @@ public class Player extends Entity {
     if (x < 0) x = gp.screenWidth;
     if (y < 0) y = gp.screenHeight;
 
-    // start of collision checker feature
-    // colOn = false;
-    // gp.cChecker.checkTile(this);
+    if (keyH.upPressed) y -= speed;
+    if (keyH.downPressed) y += speed;
+    if (keyH.leftPressed) x -= speed;
+    if (keyH.rightPressed) x += speed;
 
-    // if (y < (gp.screenHeight - 42 - gp.tileSize)) {
-    //   if (keyH.upPressed) y -= speed;
-    //   if (keyH.downPressed) y += speed;
-    //   if (keyH.leftPressed) x -= speed;
-    //   if (keyH.rightPressed) x += speed;
-    // }
+    // start of collision checker feature
+    
   }
   public void draw(Graphics2D g2) {
     g2.setColor(Color.white);
