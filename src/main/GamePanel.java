@@ -42,8 +42,6 @@ public class GamePanel extends JPanel implements Runnable {
   }
 
   public void startGameThread() {
-    System.out.println(screenHeight);
-    System.out.println(screenWidth);
     gameThread = new Thread(this);
     gameThread.start();
   }
@@ -55,9 +53,6 @@ public class GamePanel extends JPanel implements Runnable {
     double nextDrawTime = System.nanoTime() + drawInterval;
 
     while(gameThread != null) {
-      // System.out.println("The game loop is running!");
-      // System.out.println(playerX);
-      // System.out.println(playerY);
       update();
       repaint();
 
