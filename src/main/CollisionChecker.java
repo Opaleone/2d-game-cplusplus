@@ -1,6 +1,8 @@
 package src.main;
 
-import src.entity.Entity;
+import java.awt.Rectangle;
+
+import src.entity.Player;
 
 public class CollisionChecker {
   GamePanel gp;
@@ -8,7 +10,13 @@ public class CollisionChecker {
     this.gp = gp;
   }
 
-  public void checkTile(Entity entity) {
-    
+  public static boolean isColliding(Player player, Rectangle tile) {
+    Rectangle pRect = player.getBounds();
+    Rectangle tRect = tile.getBounds();
+
+    if (pRect.intersects(tRect)) {
+      return true;
+    } 
+    return false;
   }
 }

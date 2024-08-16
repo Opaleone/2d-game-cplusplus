@@ -3,10 +3,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-
+import src.main.CollisionChecker;
 import src.main.GamePanel;
 import src.main.KeyHandler;
-import src.tile.Tile;
 
 public class Player extends Entity {
   GamePanel gp;
@@ -33,19 +32,23 @@ public class Player extends Entity {
     return new Rectangle(x, y, width, height);
 }
 
-  public void move(ArrayList<Tile> tiles) {
+  public void move(ArrayList<Rectangle> tiles) {
     if (x > gp.screenWidth) x = 0;
     if (y > gp.screenHeight) y = 0;
     if (x < 0) x = gp.screenWidth;
     if (y < 0) y = gp.screenHeight;
 
-    if (keyH.upPressed) y -= speed;
-    if (keyH.downPressed) y += speed;
     if (keyH.leftPressed) x -= speed;
     if (keyH.rightPressed) x += speed;
 
     // start of collision checker feature
-    
+    y -= speed; //falling
+    for(Rectangle t : tiles) { // for all of the Tiles in tiles, do the following
+        Rectangle next = t;
+        if(CollisionChecker.isColliding(this, next)) {
+            y += 0; //stop falling
+        }
+    }
   }
   public void draw(Graphics2D g2) {
     g2.setColor(Color.white);

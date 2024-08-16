@@ -2,13 +2,16 @@ package src.tile;
 
 // import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 import src.main.GamePanel;
 
 public class TileManager {
+  ArrayList<Rectangle> tileLocations = new ArrayList<Rectangle>();
   GamePanel gp;
   Tile[] tile;
 
@@ -33,6 +36,7 @@ public class TileManager {
     int y = gp.screenHeight - 42;
     int tileRemoval[] = {10, 11, 12, 13};
     
+    
     // timesRun = 159
     for (int i = 0; i < (gp.screenWidth / gp.tileSize + 1); i++) {
       boolean found = false;
@@ -47,8 +51,12 @@ public class TileManager {
         continue;
       }
 
+      // TODO: Need to find a way to add this to gp.tiles outside of for loop;
+      // tileLocations.add(new Rectangle(x, y, gp.tileSize, gp.tileSize));
       g2.drawImage(tile[0].image, x, y, gp.tileSize, gp.tileSize, null);
+      
       x += gp.tileSize;
     }
+    // gp.tiles.addAll(tileLocations);
   }
 }

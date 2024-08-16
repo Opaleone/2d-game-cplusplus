@@ -10,7 +10,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements Runnable {
   // Sets size and scale to create panel
@@ -31,6 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
   Thread gameThread;
   public CollisionChecker cChecker = new CollisionChecker(this);
   Player player = new Player(this, keyH);
+  public ArrayList<Rectangle> tiles = new ArrayList<Rectangle>();
 
   // Creating game panel
   public GamePanel() {
@@ -72,7 +75,7 @@ public class GamePanel extends JPanel implements Runnable {
   }
 
   public void update() {
-    player.update();
+    player.move(tiles);
   }
 
   public void paintComponent(Graphics g) {
