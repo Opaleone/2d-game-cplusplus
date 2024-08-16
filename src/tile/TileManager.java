@@ -31,10 +31,18 @@ public class TileManager {
     // draw straight white line across bottom of frame
     int x = 0;
     int y = gp.screenHeight - 42;
+    int tileRemoval[] = {10, 11, 12, 13};
     
     // timesRun = 159
     for (int i = 0; i < (gp.screenWidth / gp.tileSize + 1); i++) {
-      if (i == 10 || i == 11 || i == 12 || i == 13) {
+      boolean found = false;
+      for (int value : tileRemoval) {
+        if (value == i) {
+          found = true;
+        }
+      }
+
+      if (found) {
         x += gp.tileSize;
         continue;
       }
