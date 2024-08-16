@@ -2,9 +2,11 @@ package src.entity;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import src.main.GamePanel;
 import src.main.KeyHandler;
+import src.tile.Tile;
 
 public class Player extends Entity {
   GamePanel gp;
@@ -22,10 +24,16 @@ public class Player extends Entity {
   public void setDefaultValues() {
     x = 100;
     y = 100;
+    width = gp.tileSize;
+    height = gp.tileSize;
     speed = 15;
   }
 
-  public void update() {
+  public Rectangle getBounds() {
+    return new Rectangle(x, y, width, height);
+}
+
+  public void move(ArrayList<Tile> tiles) {
     if (x > gp.screenWidth) x = 0;
     if (y > gp.screenHeight) y = 0;
     if (x < 0) x = gp.screenWidth;
