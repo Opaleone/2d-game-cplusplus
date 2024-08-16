@@ -51,7 +51,7 @@ public class TileManager {
         continue;
       }
 
-      // TODO: Need to find a way to add this to gp.tiles outside of for loop;
+      // TODO: Need to find a way to add this to gp.tiles outside of thread for loop;
       // tileLocations.add(new Rectangle(x, y, gp.tileSize, gp.tileSize));
       g2.drawImage(tile[0].image, x, y, gp.tileSize, gp.tileSize, null);
       
