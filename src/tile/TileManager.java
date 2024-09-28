@@ -1,18 +1,14 @@
 package src.tile;
 
-import java.awt.Color;
-// import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.io.IOException;
-// import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 import src.main.GamePanel;
 
 public class TileManager {
-  // ArrayList<Rectangle> tileLocations = new ArrayList<Rectangle>();
   GamePanel gp;
   Tile[] tile;
 
@@ -26,7 +22,7 @@ public class TileManager {
     try {
       tile[0] = new Tile();
       tile[0].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/Floor1.png"));
-    } catch(IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }
@@ -34,7 +30,7 @@ public class TileManager {
   public void setTileRectangles() {
     int x = 0;
     int y = gp.screenHeight - 42;
-    int tileRemoval[] = {10, 11, 12, 13};
+    int tileRemoval[] = { 10, 11, 12, 13 };
 
     for (int i = 0; i < (gp.screenWidth / gp.tileSize + 1); i++) {
       boolean found = false;
@@ -54,12 +50,11 @@ public class TileManager {
   }
 
   public void draw(Graphics2D g2) {
-    // draw straight white line across bottom of frame
+    // set tile locations for floor
     int x = 0;
     int y = gp.screenHeight - 42;
-    int tileRemoval[] = {10, 11, 12, 13};
-    
-    
+    int tileRemoval[] = { 10, 11, 12, 13 };
+
     // timesRun = 159
     for (int i = 0; i < (gp.screenWidth / gp.tileSize + 1); i++) {
       boolean found = false;
@@ -75,9 +70,6 @@ public class TileManager {
       }
 
       g2.drawImage(tile[0].image, x, y, gp.tileSize, gp.tileSize, null);
-      g2.setColor(Color.red);
-      g2.fillRect(x, y, 3, 3);
-      
       x += gp.tileSize;
     }
   }
