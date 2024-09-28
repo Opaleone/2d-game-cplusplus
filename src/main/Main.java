@@ -11,7 +11,7 @@ public class Main {
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     // Can be set to false to restrict panel to pre-designatd size
     window.setResizable(true);
-    window.setTitle("2d game Tutorial");
+    window.setTitle("My Game");
 
     GamePanel gamePanel = new GamePanel();
     window.add(gamePanel);
