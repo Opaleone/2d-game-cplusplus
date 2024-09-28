@@ -1,4 +1,5 @@
 package src.entity;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -15,7 +16,7 @@ public class Player extends Entity {
     this.gp = gp;
     this.keyH = keyH;
 
-    colArea = new Rectangle(0,0,gp.tileSize,gp.tileSize);
+    colArea = new Rectangle(0, 0, gp.tileSize, gp.tileSize);
 
     setDefaultValues();
   }
@@ -25,12 +26,12 @@ public class Player extends Entity {
     y = 100;
     width = gp.tileSize;
     height = gp.tileSize;
-    speed = 4;
+    speed = 5;
   }
 
   public Rectangle getBounds() {
     return new Rectangle(x, y, width, height - 4);
-}
+  }
 
   public void move(ArrayList<Rectangle> tiles) {
     if (x > gp.screenWidth) x = 0;
@@ -40,18 +41,17 @@ public class Player extends Entity {
 
     if (keyH.leftPressed) x -= speed;
     if (keyH.rightPressed) x += speed;
-    
     y += speed;
 
     // start of collision checker feature //falling
-    for(Rectangle t : tiles) {
-        Rectangle next = t;
-        if(CollisionChecker.isColliding(this, next)) {
-          System.out.println("ping");
-          y -= speed; //stop falling
-        } 
+    for (Rectangle t : tiles) {
+      Rectangle next = t;
+      if (CollisionChecker.isColliding(this, next)) {
+        y -= speed; // stop falling
+      }
     }
   }
+
   public void draw(Graphics2D g2) {
     g2.setColor(Color.white);
     g2.fillRect(x, y, gp.tileSize, gp.tileSize);
